@@ -30,8 +30,8 @@ MultiCounter+ significantly outperforms state-of-the-art combinations in localiz
 
 | Method | Period-mAP | AvgMAE | AvgOBO |
 | :--- | :---: | :---: | :---: |
-| ByteTrack [51] + RepNet [5] | 7.52 | 0.577 | 0.223 |
-| ByteTrack [51] + TransRAC [6] | 2.26 | 0.542 | 0.267 |
+| ByteTrack + RepNet | 7.52 | 0.577 | 0.223 |
+| ByteTrack + TransRAC | 2.26 | 0.542 | 0.267 |
 | **MultiCounter+ (Ours)** | **14.56** | **0.223** | **0.571** |
 
 ### 2. Efficiency Comparison
@@ -56,7 +56,7 @@ We provide checkpoints trained using our two-stage strategy: (1) Synthetic Pre-t
 
 | Model | Backbone | Training Data | Period-mAP | Download |
 | :--- | :--- | :--- | :--- | :--- |
-| **MultiCounter+ (Best)** | **ResNet-50-FPN** | **Synthetic + MultiRep** | **14.56** | **https://drive.google.com/file/d/17eHYy4JRxF2bAMjMnLqyXNLmN7zrtw4H/view?usp=drive_link** |
+| **MultiCounter+** | **ResNet-50-FPN** | **Synthetic + MultiRep** | **14.56** | **[**Model**](https://drive.google.com/file/d/17eHYy4JRxF2bAMjMnLqyXNLmN7zrtw4H/view?usp=drive_link)** |
 
 ## 🛠️ Installation
 
@@ -138,4 +138,5 @@ bash tools/test.sh configs/multicounter/finetune_multirep.py work_dirs/finetune/
 ## 🤝 Acknowledgement
 
 This project is based on [MMDetection](https://github.com/open-mmlab/mmdetection). We thank the authors for their excellent open-source work.
+
 
