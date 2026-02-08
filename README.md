@@ -16,13 +16,11 @@ Current methods often fail in real-world scenarios involving:
 * **Interruptions & Occlusions:** "People in & out" scenarios and camera view changes.
 
 To address these, **MultiCounter+** proposes an end-to-end framework featuring:
-1.  **MSTI Module:** Mixed Spatial-Temporal Interaction for efficient context correlation.
-2.  **Siamese Queries:** Enhanced temporal consistency to track instances across interruptions.
-3.  **Anchor-guided Period Head:** Long-short period awareness to handle varying motion frequencies.
+1.  **Instance Head with Temporal Consistency:** Unlike the MultiCounter design, the new Instance Head incorporates a Siamese Query mechanism with dynamic updates. This ensures cross-frame feature consistency, allowing the model to robustly track and associate the same instance across high-dynamic video sequences.
+2.  **Period Head with Anchor Guidance:** We redesign the Period Head by introducing an Anchor-guided Similarity Reconstruction module. By generating an Anchor Matrix, this module enables the model to perceive both long and short periods more accurately, addressing the limitations of fixed-scale counting.
+3.  **Integrated Data Augmentation Pipeline:** We introduce a comprehensive Data Augmentation Pipeline that includes exemplar extraction and various transformations (scaling, rotation, speed). This pipeline is integral to our training strategy, allowing the model to leverage synthetic data for better generalization.
 
 ![Framework Overview](demo_video/framework.png)
-*(Please place Figure 2 from the paper here)*
-
 ## 🚀 Main Results
 
 Extensive experiments on the **MultiRep** dataset demonstrate that MultiCounter+ achieves superior performance compared to "Tracking-by-Detection" baselines (e.g., ByteTrack + RepNet).
@@ -140,3 +138,4 @@ bash tools/test.sh configs/multicounter/finetune_multirep.py work_dirs/finetune/
 ## 🤝 Acknowledgement
 
 This project is based on [MMDetection](https://github.com/open-mmlab/mmdetection). We thank the authors for their excellent open-source work.
+
