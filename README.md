@@ -37,7 +37,7 @@ MultiCounter+ significantly outperforms state-of-the-art combinations in localiz
 ### 2. Efficiency Comparison
 Our method maintains **constant inference time** regardless of the number of instances ($N$), whereas baselines suffer from linear computational growth.
 
-| Method | Inference Time (ms) @ N=1 | Inference Time (ms) @ N=5 | FPS |
+| Method | Inference Time (ms) @ N=1 | Inference Time (ms) @ N=5 | FPS (N=1) |
 | :--- | :---: | :---: | :---: |
 | ByteTrack + RepNet | 62.1 | 112.9 | 16.1 |
 | **MultiCounter+ (Ours)** | **41.5** | **41.5** | **24.1** |
@@ -114,7 +114,7 @@ The training process consists of two stages to ensure robust generalization:
 Train the model on the large-scale synthetic dataset generated from RepCount-A to learn basic periodic patterns.
 
 ```bash
-bash tools/dist_train.sh configs/multicounter/pretrain_synthetic.py 8
+bash tools/train.sh
 
 ```
 
@@ -122,7 +122,7 @@ bash tools/dist_train.sh configs/multicounter/pretrain_synthetic.py 8
 Load the pre-trained weights and fine-tune on the MultiRep dataset for real-world adaptation.
 
 ```bash
-bash tools/dist_train.sh configs/multicounter/finetune_multirep.py 8 --load-from work_dirs/pretrain/epoch_10.pth
+bash tools/train.sh --load-from work_dirs/pretrain/epoch_10.pth
 
 ```
 
@@ -131,12 +131,13 @@ bash tools/dist_train.sh configs/multicounter/finetune_multirep.py 8 --load-from
 Evaluate the model performance on the MultiRep test set.
 
 ```bash
-bash tools/test.sh configs/multicounter/finetune_multirep.py work_dirs/finetune/best_mAP.pth --eval period_map
+bash tools/test.sh
 
 ```
 
 ## 🤝 Acknowledgement
 
 This project is based on [MMDetection](https://github.com/open-mmlab/mmdetection). We thank the authors for their excellent open-source work.
+
 
 
